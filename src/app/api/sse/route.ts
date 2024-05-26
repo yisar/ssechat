@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
 
   setTimeout(async () => {
     await stream.writer.write(encoder.encode(`Stream open!\n\n`));
+    console.log(Object.keys((globalThis as any).streams).length)
   }, 2000);
 
   return new Response(stream.readable, {
