@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-const streams = {} as any;
 import { StreamNotFoundError } from "./errors";
 import {
   StreamUnidentifiableMissingRequirementsError,
@@ -7,6 +6,9 @@ import {
 
 import { db } from "@/db";
 import { notes } from "@/db/schema";
+
+const streams = {} as any;
+
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url || "");
@@ -99,8 +101,6 @@ function createStreamForUser(
   return inMemoryStream;
 }
 
-function removeStreamForUser(args: { roomId: string; name: string }) { }
-
 
 type BroadcastMessage = {
   sender: string;
@@ -153,6 +153,8 @@ export async function POST(request: NextRequest) {
     message,
     availableRooms: Object.keys(streams || {}),
   });
+
+  console.log(streams)
 
   let stream = getStreamForUser({ roomId: id, name });
 
