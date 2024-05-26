@@ -48,8 +48,7 @@ export async function POST(request: NextRequest) {
 }
 
 const addMessage = async (room: string, name: string, message: string, email: string) => {
-  const time = (Date.now() / 1000) | 0
-
+  const time = new Date()
   await db.insert(notes)
     .values({
       room,

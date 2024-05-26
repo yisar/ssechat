@@ -16,7 +16,7 @@ export function RoomInput() {
       return
     }
     chat.onUpdateDisplayName(displayNameRef.current.value);
-    chat.onUpdateDisplayEmail(displayNameRef.current.value);
+    chat.onUpdateDisplayEmail(displayEmailRef.current.value);
     chat.onEnterRoom(`${displayNameRef.current.value}-${roomNameRef.current.value}`);
   };
   return (

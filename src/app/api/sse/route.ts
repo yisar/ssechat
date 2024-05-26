@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
   const id = searchParams.get("id");
   const name = searchParams.get("name");
   if (!id || !name) {
-    throw new Error("Missing id or name");
+    // throw new Error("Missing id or name");
+    return new Response("Missing id or name");
   }
 
   createStreamForUser({ roomId: id, name });

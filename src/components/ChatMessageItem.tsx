@@ -7,6 +7,8 @@ export type ChatMessageItemProps = {
 
 export default function ChatMessageItem(props: ChatMessageItemProps) {
   const { message } = props;
+  console.log(message)
+
   const {displayName} = useChatContext();
   const senderInitial = message.sender.slice(0, 1).toUpperCase();
   const fromMe = message.sender === displayName;

@@ -3,8 +3,8 @@ import { db } from "@/db";
 import { notes } from "@/db/schema";
 
 export default async function Index() {
-  const allNotes = await db.select().from(notes);
-  console.log(allNotes)
+  
+  // console.log(allNotes)
 
   return (
     <div className="max-w-xl lg:max-w-lg">

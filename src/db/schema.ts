@@ -1,6 +1,7 @@
 import { InferModel, sql } from 'drizzle-orm';
 
 import {
+  integer,
   pgTable,
   serial,
   text,
@@ -9,6 +10,7 @@ import {
 } from 'drizzle-orm/pg-core';
 
 export const notes = pgTable("chat", {
+  id: text("id").notNull(),
   room: text("room").notNull(),
   uname: text("uname").notNull(),
   umail: text("umail").notNull(),

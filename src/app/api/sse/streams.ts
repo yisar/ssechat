@@ -22,6 +22,7 @@ export function getStreamKeyForUser(args: StreamIdentifierArgs) {
 export function getStreamParticipantsForRoom(
   roomId: string
 ): Participants | undefined {
+  console.log(streams)
   return streams[roomId];
 }
 

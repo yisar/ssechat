@@ -41,7 +41,7 @@ export function chatReducer(
     case "set_display_email":
       return {
         ...state,
-        roomId: action.payload,
+        displayEmail: action.payload,
       };
     case "set_room_id":
       return {
