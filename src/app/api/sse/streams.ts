@@ -47,7 +47,7 @@ export function createStreamForUser(
     const existingStream = getStreamForUser(args);
     if (existingStream) {
       const key = getStreamKeyForUser(args);
-      // throw new StreamAlreadyExistsError(key);
+      throw new StreamAlreadyExistsError(key);
     }
     room[args.name] = inMemoryStream;
   } else {
