@@ -22,7 +22,7 @@ export function RoomInput() {
   };
   return (
     <div className="mt-6 flex max-w-md gap-x-4 flex flex-col gap-y-4">
-      <label>Chat room</label>
+      <label>Room</label>
       <input
         ref={roomNameRef}
         name="room-name"
@@ -32,7 +32,7 @@ export function RoomInput() {
         placeholder="e.g chat-room-a"
       />
 
-      <label>Username</label>
+      <label>Name</label>
       <input
         ref={displayNameRef}
         name="display-name"
