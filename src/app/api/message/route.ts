@@ -3,7 +3,7 @@ import {
   StreamNotFoundError,
   StreamUnidentifiableMissingRequirementsError,
 } from "../sse/errors";
-import { getStreamForUser, getStreamKeyForUser } from "../sse/route";
+import { getStreamForUser, getStreamKeyForUser } from "../sse/streams";
 import { broadcastMessageInRoom } from "../sse/broadcast";
 import { db } from "@/db";
 import { notes } from "@/db/schema";
