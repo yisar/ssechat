@@ -23,10 +23,6 @@ export async function GET(request: NextRequest) {
 
   setTimeout(async () => {
     await stream.writer.write(encoder.encode(`Stream open!\n\n`));
-    await stream.writer.write(encoder.encode(`Welcome ${name}!\n\n`));
-    setTimeout(async () => {
-      await stream.writer.write(encoder.encode(`Entered room: ${id}...\r\r`));
-    }, 2000);
   }, 2000);
 
   return new Response(stream.readable, {

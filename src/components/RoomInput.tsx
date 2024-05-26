@@ -17,7 +17,10 @@ export function RoomInput() {
     }
     chat.onUpdateDisplayName(displayNameRef.current.value);
     chat.onUpdateDisplayEmail(displayEmailRef.current.value);
-    chat.onEnterRoom(`${displayNameRef.current.value}-${roomNameRef.current.value}`);
+    chat.onEnterRoom([
+      displayNameRef.current.value, roomNameRef.current.value]
+      .sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', { sensitivity: 'accent' }))
+      .join('-'));
   };
   return (
     <div className="mt-6 flex max-w-md gap-x-4 flex flex-col gap-y-4">

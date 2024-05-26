@@ -8,12 +8,6 @@ import { sql } from "@vercel/postgres";
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url || "");
   const uname = searchParams.get("uname");
-  // const rooms = await db.select({
-  //   room: notes.room,
-  //   id: sql`max(${notes.id})`,
-  //   // message: notes.message
-  // }).from(notes).where(like(notes.room, `%${uname}%`)).groupBy(sql`${notes.room}`);
-  // db.execute(sql`select * from ${usersTable} where ${usersTable.id} = ${id}`)
   const str = sql`select
   t1.id,
 	t1.room,
