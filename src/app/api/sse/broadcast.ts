@@ -1,5 +1,5 @@
 import { StreamNotFoundError } from "./errors";
-import { getStreamKeyForUser, getStreamParticipantsForRoom } from "./streams";
+import { getStreamKeyForUser, getStreamParticipantsForRoom } from "./route";
 
 type BroadcastMessage = {
   sender: string;
