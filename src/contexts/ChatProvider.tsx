@@ -9,7 +9,7 @@ export const CHAT_ROOM_NAME = "chat-room-name";
 
 enum ApiRoutes {
   SSE = "/api/sse",
-  Message = "/api/message",
+  Message = "/api/sse",
 }
 
 export type ChatProviderProps = {
