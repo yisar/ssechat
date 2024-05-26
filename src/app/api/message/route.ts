@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     id,
     name,
     message,
-    availableRooms: Object.keys((globalThis as any).streams),
+    availableRooms: Object.keys((globalThis as any).streams||{}),
   });
 
   let stream = getStreamForUser({ roomId: id, name });
