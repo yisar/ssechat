@@ -11,6 +11,7 @@
   "dependencies": {
     "@libsql/client": "^0.6.0",
     "@ngneat/falso": "^7.1.1",
+    "@vercel/postgres": "^0.8.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.10",
     "next": "14.0.4",

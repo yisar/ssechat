@@ -1,13 +1,11 @@
-import { drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
-import "dotenv/config";
-import dotenv from "dotenv";
+import * as schema from './schema';
+import path from 'node:path';
+import { cwd } from 'node:process';
 
-dotenv.config({
-  path: ".env.local",
-});
-const client = createClient({
-  url: process.env.TURSO_DATABASE_URL!,
-  authToken: process.env.TURSO_DATABASE_AUTH_TOKEN!,
-});
-export const db = drizzle(client);
+import { drizzle } from 'drizzle-orm/vercel-postgres';
+import { sql } from "@vercel/postgres";
+
+
+// const dbpath = path.join(cwd(), 'tmp/acgzone.db')
+
+export const db = drizzle(sql, { schema });

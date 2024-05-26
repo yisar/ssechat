@@ -3,7 +3,7 @@ import { db } from "@/db";
 import { notes } from "@/db/schema";
 
 export default async function Index() {
-  const allNotes = await db.select().from(notes).all();
+  const allNotes = await db.select().from(notes);
   console.log(allNotes)
 
   return (

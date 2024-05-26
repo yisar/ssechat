@@ -1,13 +1,19 @@
-import { InferModelFromColumns, sql, InferModel } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { InferModel, sql } from 'drizzle-orm';
 
-export const notes = sqliteTable("chat", {
-  room: text("title").notNull(),
-  uname: text("uname").notNull(),
-  nmail: text("umail").notNull(),
-  message: text("message").notNull(),
-  created_at: text("created_at")
-    .notNull()
+import {
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  uniqueIndex,
+} from 'drizzle-orm/pg-core';
+
+export const notes = pgTable("chat", {
+  room: text("room"),
+  uname: text("uname"),
+  nmail: text("umail"),
+  message: text("message"),
+  time: timestamp("time")
     .default(sql`CURRENT_TIMESTAMP`),
 });
 
