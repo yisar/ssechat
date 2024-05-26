@@ -20,7 +20,7 @@ export function RoomInput() {
     chat.onEnterRoom([
       displayNameRef.current.value, roomNameRef.current.value]
       .sort((a, b) => a.localeCompare(b, 'zh-Hans-CN', { sensitivity: 'accent' }))
-      .join('-'));
+      .join('::'));
   };
   return (
     <div className="mt-6 flex max-w-md gap-x-4 flex flex-col gap-y-4">

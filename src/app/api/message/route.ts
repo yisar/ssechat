@@ -3,7 +3,7 @@ import {
   StreamNotFoundError,
   StreamUnidentifiableMissingRequirementsError,
 } from "../sse/errors";
-import { getStreamForUser, getStreamKeyForUser, streams } from "../sse/streams";
+import { getStreamForUser, getStreamKeyForUser } from "../sse/streams";
 import { broadcastMessageInRoom } from "../sse/broadcast";
 import { db } from "@/db";
 import { notes } from "@/db/schema";
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     id,
     name,
     message,
-    availableRooms: Object.keys(streams),
+    availableRooms: Object.keys((globalThis as any).streams),
   });
 
   let stream = getStreamForUser({ roomId: id, name });

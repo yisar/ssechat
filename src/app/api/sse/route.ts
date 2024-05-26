@@ -1,4 +1,4 @@
-import { createStreamForUser, getStreamForUser, streams } from "./streams";
+import { createStreamForUser, getStreamForUser } from "./streams";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   console.log("[sse] create stream", {
     id,
     name,
-    rooms: Object.keys(streams).length,
+    rooms: Object.keys((globalThis as any).streams).length,
   });
 
   setTimeout(async () => {

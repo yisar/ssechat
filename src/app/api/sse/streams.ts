@@ -8,7 +8,7 @@ type InMemoryStream = {
 
 type Participants = Record<string, InMemoryStream>;
 
-export const streams: Record<string, Participants> = {};
+(globalThis as any).streams = {} as any;
 
 export type StreamIdentifierArgs = {
   roomId: string;
@@ -22,8 +22,7 @@ export function getStreamKeyForUser(args: StreamIdentifierArgs) {
 export function getStreamParticipantsForRoom(
   roomId: string
 ): Participants | undefined {
-  console.log(streams)
-  return streams[roomId];
+  return (globalThis as any).streams[roomId];
 }
 
 export function getStreamForUser(
@@ -51,7 +50,7 @@ export function createStreamForUser(
     }
     room[args.name] = inMemoryStream;
   } else {
-    streams[args.roomId] = {
+    (globalThis as any).streams[args.roomId] = {
       [args.name]: inMemoryStream,
     };
   }
