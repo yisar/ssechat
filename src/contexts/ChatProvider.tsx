@@ -20,6 +20,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
   const router = useRouter();
   const [state, dispatch] = useReducer(chatReducer, {
     displayName: "",
+    displayEmail: "111@222",
     roomId: undefined,
     messages: [],
   });
@@ -29,6 +30,15 @@ export function ChatProvider({ children }: ChatProviderProps) {
   ) => {
     dispatch({
       type: "set_display_name",
+      payload: name,
+    });
+  };
+
+  const onUpdateDisplayEmail: ChatContextProps["onUpdateDisplayEmail"] = (
+    name
+  ) => {
+    dispatch({
+      type: "set_display_email",
       payload: name,
     });
   };
@@ -51,6 +61,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
       body: JSON.stringify({
         id: state.roomId,
         name: state.displayName,
+        email: state.displayEmail,
         message,
       }),
     });
@@ -73,6 +84,7 @@ export function ChatProvider({ children }: ChatProviderProps) {
         roomId: state.roomId,
         messages: state.messages,
         onUpdateDisplayName,
+        onUpdateDisplayEmail,
         onEnterRoom,
         onSendMessage,
         onReceivedMessage,

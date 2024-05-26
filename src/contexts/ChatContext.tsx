@@ -12,8 +12,10 @@ export class ChatContextProviderMissingError extends Error {
 export type ChatContextProps = {
   roomId?: string;
   displayName?: string;
+  displayEmail?: string;
   messages: Array<ChatRoomMessage>;
   onUpdateDisplayName: (displayName: string) => void;
+  onUpdateDisplayEmail: (displayEmail: string) => void;
   onEnterRoom: (roomId: string) => Promise<void>;
   onSendMessage: (message: string) => Promise<void>;
   onReceivedMessage: (message: ChatRoomMessage) => void;

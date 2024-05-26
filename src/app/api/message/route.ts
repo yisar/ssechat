@@ -5,10 +5,12 @@ import {
 } from "../sse/errors";
 import { getStreamForUser, getStreamKeyForUser, streams } from "../sse/streams";
 import { broadcastMessageInRoom } from "../sse/broadcast";
+import { db } from "@/db";
+import { notes } from "@/db/schema";
 
 export async function POST(request: NextRequest) {
-  const { id, name, message } = await request.json();
-  if (!id || !name || !message) {
+  const { id, name, message, email } = await request.json();
+  if (!id || !name || !message || !email) {
     throw new StreamUnidentifiableMissingRequirementsError();
   }
 
@@ -36,9 +38,24 @@ export async function POST(request: NextRequest) {
 
   await broadcastMessageInRoom({ roomId: id, from: name, message });
 
+  await addMessage(id, name, message, email)
+
   return Response.json({
     data: {
       message: "Message sent",
     },
   });
 }
+
+const addMessage = async (room: string, name: string, message: string, email: string) => {
+  const time = (Date.now() / 1000) | 0
+
+  await db.insert(notes)
+    .values({
+      room,
+      uname: name,
+      umail: email,
+      message,
+      time 
+    } as any);
+};

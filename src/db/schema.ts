@@ -9,12 +9,11 @@ import {
 } from 'drizzle-orm/pg-core';
 
 export const notes = pgTable("chat", {
-  room: text("room"),
-  uname: text("uname"),
-  nmail: text("umail"),
-  message: text("message"),
-  time: timestamp("time")
-    .default(sql`CURRENT_TIMESTAMP`),
+  room: text("room").notNull(),
+  uname: text("uname").notNull(),
+  umail: text("umail").notNull(),
+  message: text("message").notNull(),
+  time: text('time').notNull(),
 });
 
 
