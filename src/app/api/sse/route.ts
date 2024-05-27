@@ -16,7 +16,6 @@ export async function GET(request: NextRequest) {
   const id = searchParams.get("id");
   const name = searchParams.get("name");
   if (!id || !name) {
-    // throw new Error("Missing id or name");
     return new Response("Missing id or name");
   }
 
@@ -88,11 +87,6 @@ function createStreamForUser(
     writer: stream.writable.getWriter(),
   };
   if (room) {
-    const existingStream = getStreamForUser(args);
-    if (existingStream) {
-      const key = getStreamKeyForUser(args);
-      throw new StreamAlreadyExistsError(key);
-    }
     room[args.name] = inMemoryStream;
   } else {
     streams[args.roomId] = {
@@ -154,8 +148,6 @@ export async function POST(request: NextRequest) {
     message,
     availableRooms: Object.keys(streams || {}),
   });
-
-  console.log(streams)
 
   let stream = getStreamForUser({ roomId: id, name });
 
