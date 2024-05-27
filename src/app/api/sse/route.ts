@@ -97,6 +97,7 @@ function createStreamForUser(
 type BroadcastMessage = {
   from: string;
   text: string;
+  email: string;
   receivedAt: number;
 };
 
@@ -104,12 +105,13 @@ type BroadcastMessageInRoomProps = {
   roomId: string;
   from: string;
   message: string;
+  email: string;
 };
 
 async function broadcastMessageInRoom(
   props: BroadcastMessageInRoomProps
 ) {
-  const { roomId, from, message } = props;
+  const { roomId, from, message, email } = props;
   const room = getStreamParticipantsForRoom(roomId);
   if (!room) {
     const key = getStreamKeyForUser({ roomId, name: from });
@@ -124,6 +126,7 @@ async function broadcastMessageInRoom(
     const data: BroadcastMessage = {
       from: from,
       text: message,
+      email: email,
       receivedAt: Date.now(),
     };
     await room[participantIds[id]].writer.write(`event: message\n`);
@@ -161,7 +164,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  await broadcastMessageInRoom({ roomId: id, from: name, message });
+  await broadcastMessageInRoom({ roomId: id, from: name, message, email });
 
   await addMessage(id, name, message, email)
 
