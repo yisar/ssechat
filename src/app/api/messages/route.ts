@@ -9,7 +9,12 @@ export async function GET(request: NextRequest) {
 
   const { rows } = await str
 
-  return Response.json({
+  return new Response(JSON.stringify({
     data: rows,
-  });
+  }), {
+    headers: {
+      "content-type": 'application/json;charset=utf-8',
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
 }

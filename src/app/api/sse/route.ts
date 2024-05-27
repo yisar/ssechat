@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
   });
 
   setTimeout(async () => {
-    await stream.writer.write(encoder.encode(`event: open\n\n`));
+    await stream.writer.write(encoder.encode(`event: open\n\n`)); 
   }, 500);
 
   return new Response(stream.readable, {
@@ -42,8 +42,6 @@ export async function GET(request: NextRequest) {
     },
   });
 }
-
-import { StreamAlreadyExistsError } from "./errors";
 
 type InMemoryStream = {
   stream: TransformStream;
