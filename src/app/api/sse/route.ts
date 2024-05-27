@@ -31,9 +31,8 @@ export async function GET(request: NextRequest) {
   });
 
   setTimeout(async () => {
-    await stream.writer.write(encoder.encode(`Stream open!\n\n`));
-    console.log(Object.keys(streams).length)
-  }, 2000);
+    await stream.writer.write(encoder.encode(`event: open\n\n`));
+  }, 500);
 
   return new Response(stream.readable, {
     headers: {
@@ -98,7 +97,7 @@ function createStreamForUser(
 
 
 type BroadcastMessage = {
-  sender: string;
+  from: string;
   text: string;
   receivedAt: number;
 };
@@ -125,7 +124,7 @@ async function broadcastMessageInRoom(
   });
   for (const id in participantIds) {
     const data: BroadcastMessage = {
-      sender: from,
+      from: from,
       text: message,
       receivedAt: Date.now(),
     };
